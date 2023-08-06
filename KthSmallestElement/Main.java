@@ -33,8 +33,8 @@ class Main {
     }
 
     static int findKthElement(int[] arr, int k) {
-        int index = findKthHelper(arr, k, 0, arr.length - 1);
-        return index;
+        int element = findKthHelper(arr, k, 0, arr.length - 1);
+        return element;
     }
 
     public static void main(String[] args) {
