@@ -18,6 +18,29 @@ class Main {
         arr[j] = temp;
     }
 
+    static int getNumberOfSmallerElements(int[] arr, int keyIndex) {
+        int count = 0, n = arr.length;
+        for(int i = keyIndex+1; i < n ; i++) {
+            if(arr[i] < arr[keyIndex]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    static void cycleSort(int[] arr) {
+        int currentIndex = 0, smallerElement = -1, n = arr.length;
+        while(currentIndex < n) {
+            smallerElement = getNumberOfSmallerElements(arr, currentIndex);
+            if(currentIndex == smallerElement + currentIndex) {
+                currentIndex++;
+            } else {
+                swap(arr, currentIndex, smallerElement + currentIndex);
+            }
+        }
+        print(arr, "output");
+    }
+
     static void merge(int[] arr, int low, int high, int mid) {
         int n1 = mid - low + 1;
         int n2 = high - mid;
@@ -142,6 +165,7 @@ class Main {
             //insertionSort(arr);
             //quickSort(arr);
             //mergeSort(arr);
+            cycleSort(arr);
         }
     }
 }
