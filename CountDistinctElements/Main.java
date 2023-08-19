@@ -19,7 +19,7 @@ class Main {
                 arr[i] = sc.nextInt();
             }
             int count = getCountOfUniqueElements(arr);
-            System.out.println(count);
+            System.out.println("Unique count = " + count);
         }
     }
 }
