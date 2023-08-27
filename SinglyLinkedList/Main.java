@@ -106,6 +106,7 @@ class LinkedList {
             temp = temp.getNext();
         }
         temp.setNext(null);
+        size--;
         return head;
     }
 
