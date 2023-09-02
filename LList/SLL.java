@@ -1,33 +1,9 @@
-package SinglyLinkedList;
+package LList;
 
-import java.util.*;
-
-class Node {
-    private int data;
-    private Node next;
-    Node() {}
-    Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-    public int getData() {
-        return data;
-    }
-    public Node getNext() {
-        return next;
-    }
-    public void setNext(Node next) {
-        this.next = next;
-    }
-    public void setData(int data) {
-        this.data = data;
-    }
-}
-
-class LinkedList {
-    private Node head;
+public class SLL {
+    private SLLNode head;
     private int size;
-    public Node getHead() {
+    public SLLNode getHead() {
         return head;
     }
     public int getSize() {
@@ -37,7 +13,7 @@ class LinkedList {
         return this.head == null;
     }
     public void print() {
-        Node temp = head;
+        SLLNode temp = head;
         while(temp != null) {
             System.out.print(temp.getData() + " -> ");
             temp = temp.getNext();
@@ -45,28 +21,28 @@ class LinkedList {
         System.out.print("NULL\n");
     }
 
-    public Node insertAtBegning(int data) {
-        Node newNode = new Node(data);
+    public SLLNode insertAtBegning(int data) {
+        SLLNode newNode = new SLLNode(data);
         newNode.setNext(head);
         head = newNode;
         size++;
         return head;
     }
 
-    public Node insertAtEnd(int data) {
+    public SLLNode insertAtEnd(int data) {
         if(isEmpty()) 
             return insertAtBegning(data);
-        Node temp = head;
+        SLLNode temp = head;
         while(temp.getNext() != null) {
             temp = temp.getNext();
         }
-        Node newNode = new Node(data);
+        SLLNode newNode = new SLLNode(data);
         temp.setNext(newNode);
         size++;
         return head;
     }
 
-    public Node insert(int data, int pos) {
+    public SLLNode insert(int data, int pos) {
         if(pos < 1) {
             System.out.println("Invalid value for the position");
             return head;
@@ -76,8 +52,8 @@ class LinkedList {
         else if (pos > size)
             return insertAtEnd(data);
         else  {
-            Node newNode = new Node(data);
-            Node temp = head, newNodeNext = null;
+            SLLNode newNode = new SLLNode(data);
+            SLLNode temp = head, newNodeNext = null;
             int count = 1, index = pos - 1;
             while(count < index) {
                 temp = temp.getNext();
@@ -91,7 +67,7 @@ class LinkedList {
         }
     }
 
-    public Node deleteFromBegning() {
+    public SLLNode deleteFromBegning() {
         if(!isEmpty()) {
             head = head.getNext();
             size--;
@@ -99,9 +75,9 @@ class LinkedList {
         return head;
     }
 
-    public Node deleteFromEnd() {
+    public SLLNode deleteFromEnd() {
         if(size <= 1) return deleteFromBegning();
-        Node temp = head;
+        SLLNode temp = head;
         while(temp.getNext().getNext() != null) {
             temp = temp.getNext();
         }
@@ -110,7 +86,7 @@ class LinkedList {
         return head;
     }
 
-    public Node delete(int pos) {
+    public SLLNode delete(int pos) {
         if(pos < 1) {
             System.out.println("Invalid value for the position");
             return head;
@@ -120,27 +96,27 @@ class LinkedList {
         else if(pos >= size)
             return deleteFromEnd();
         else {
-            Node temp = head;
+            SLLNode temp = head;
             int count = 1, index = pos - 1;
             while(count < index) {
                 temp = temp.getNext();
                 count++;
             }
-            Node newNext = temp.getNext().getNext();
+            SLLNode newNext = temp.getNext().getNext();
             temp.setNext(newNext);
             size--;
             return head;
         }
     }
 
-    public Node reverse() {
+    public SLLNode reverse() {
         if(isEmpty()) 
             return head;
         else {
-            Node current = head;
-            Node next = current.getNext();
+            SLLNode current = head;
+            SLLNode next = current.getNext();
             while(next != null) {
-                Node nextLink = next.getNext();
+                SLLNode nextLink = next.getNext();
                 next.setNext(current);
                 current = next;
                 next = nextLink;
@@ -148,39 +124,6 @@ class LinkedList {
             head.setNext(null);
             head = current;
             return head;
-        }
-    }
-}
-
-class Main {
-    public static void main(String[] args) {
-        try(Scanner sc = new Scanner(System.in)) {
-            int n = sc.nextInt();
-            LinkedList ls = new LinkedList();
-            for(int i = 0 ; i < n ; i++) {
-                ls.insert(sc.nextInt(), i + 1);
-            }
-            ls.print();
-            // ls.insert(0, 1);
-            // ls.print();
-            // ls.insert(6, 6);
-            // ls.print();
-            // ls.insert(-1, 3);
-            // ls.print();
-            // ls.insert(11, 8);
-            // ls.print();
-            // ls.delete(1);
-            // ls.print();
-            // ls.delete(1);
-            // ls.print();
-            // ls.delete(8);
-            // ls.print();
-            // ls.delete(5);
-            // ls.print();
-            // ls.delete(3);
-            // ls.print();
-            // ls.reverse();
-            // ls.print();
         }
     }
 }

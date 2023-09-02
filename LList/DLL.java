@@ -1,43 +1,9 @@
-package DoubleLinkedList;
+package LList;
 
-import java.util.*;
-
-class Node {
-    private int data;
-    private Node next;
-    private Node prev;
-    
-    Node() {};
-    Node(int data) {
-        this.data = data;
-        this.next = null;
-        this.prev = null;
-    }
-
-    public int getData() {
-        return data;
-    }
-    public Node getNext() {
-        return next;
-    }
-    public Node getPrev() {
-        return prev;
-    }
-    public void setNext(Node next) {
-        this.next = next;
-    }
-    public void setPrev(Node prev) {
-        this.prev = prev;
-    }
-    public void setData(int data) {
-        this.data = data;
-    }
-}
-
-class LinkedList {
-    private Node head;
+public class DLL {
+    private DLLNode head;
     private int size;
-    public Node getHead() {
+    public DLLNode getHead() {
         return head;
     }
     public int getSize() {
@@ -47,7 +13,7 @@ class LinkedList {
         return this.head == null;
     }
     public void print() {
-        Node temp = head;
+        DLLNode temp = head;
         while(temp != null) {
             System.out.print(temp.getData() + " -> ");
             temp = temp.getNext();
@@ -55,8 +21,8 @@ class LinkedList {
         System.out.print("NULL\n");
     }
 
-    public Node insertAtBegning(int data) {
-        Node newNode = new Node(data);
+    public DLLNode insertAtBegning(int data) {
+        DLLNode newNode = new DLLNode(data);
         newNode.setNext(head);
         if(!isEmpty()) 
             head.setPrev(newNode);
@@ -65,12 +31,12 @@ class LinkedList {
         return head;
     }
 
-    public Node insertAtEnd(int data) {
+    public DLLNode insertAtEnd(int data) {
         if(isEmpty())
             return insertAtBegning(data);
         else {
-            Node newNode = new Node(data);
-            Node temp = head;
+            DLLNode newNode = new DLLNode(data);
+            DLLNode temp = head;
             while(temp.getNext() != null) {
                 temp = temp.getNext();
             }
@@ -81,7 +47,7 @@ class LinkedList {
         }
     }
 
-    public Node insert(int data, int pos) {
+    public DLLNode insert(int data, int pos) {
         if(pos < 1) {
             System.out.println("Invalid value for the position");
             return head;
@@ -91,14 +57,14 @@ class LinkedList {
         else if(pos > size)
             return insertAtEnd(data);
         else {
-            Node temp = head;
+            DLLNode temp = head;
             int count = 1;
             while(count < pos) {
                 temp = temp.getNext();
                 count++;
             }
-            Node newNode = new Node(data);
-            Node prev = temp.getPrev();
+            DLLNode newNode = new DLLNode(data);
+            DLLNode prev = temp.getPrev();
             newNode.setPrev(prev);
             newNode.setNext(temp);
             prev.setNext(newNode);
@@ -108,7 +74,7 @@ class LinkedList {
         }
     }
 
-    public Node deleteFromBegning() {
+    public DLLNode deleteFromBegning() {
         if(!isEmpty()) {
             head = head.getNext();
             size--;
@@ -116,22 +82,22 @@ class LinkedList {
         return head;
     }
 
-    public Node deleteFromEnd() {
+    public DLLNode deleteFromEnd() {
         if(size <= 1)
             return deleteFromBegning();
         else {
-            Node temp = head;
+            DLLNode temp = head;
             while(temp.getNext() != null) {
                 temp = temp.getNext();
             }
-            Node prev = temp.getPrev();
+            DLLNode prev = temp.getPrev();
             prev.setNext(null);
             size--;
             return head;
         }
     }
 
-    public Node delete(int pos) {
+    public DLLNode delete(int pos) {
         if(pos < 1) {
             System.out.println("Invalid value for the position");
             return head;
@@ -141,15 +107,15 @@ class LinkedList {
         else if(pos >= size)
             return deleteFromEnd();
         else {
-            Node temp = head;
+            DLLNode temp = head;
             int count = 1;
             while(count < pos) {
                 temp = temp.getNext();
                 count++;
             }
-            Node prevNext = temp.getNext();
-            Node nextPrev = temp.getPrev();
-            Node prev = nextPrev, next = prevNext;
+            DLLNode prevNext = temp.getNext();
+            DLLNode nextPrev = temp.getPrev();
+            DLLNode prev = nextPrev, next = prevNext;
             prev.setNext(prevNext);
             next.setPrev(nextPrev);
             size--;
@@ -157,11 +123,11 @@ class LinkedList {
         }
     }
 
-    public Node reverse() {
+    public DLLNode reverse() {
         if(size > 1) {
-            Node current = head.getNext();
+            DLLNode current = head.getNext();
             while(current != null) {
-                Node nextCurrent = current.getNext();
+                DLLNode nextCurrent = current.getNext();
                 current.setNext(current.getPrev());
                 current.getPrev().setPrev(current);
                 if(nextCurrent == null) {
@@ -172,38 +138,5 @@ class LinkedList {
             }
         }
         return head;
-    }
-}
-
-class Main {
-    public static void main(String[] args) {
-        try(Scanner sc = new Scanner(System.in)) {
-            int n = sc.nextInt();
-            LinkedList ls = new LinkedList();
-            for(int i = 0 ; i < n ; i++) {
-                ls.insert(sc.nextInt(), i + 1);
-            }
-            ls.print();
-            // ls.insert(0, 1);
-            // ls.print();
-            // ls.insert(6, 6);
-            // ls.print();
-            // ls.insert(-1, 3);
-            // ls.print();
-            // ls.insert(11, 8);
-            // ls.print();
-            // ls.delete(1);
-            // ls.print();
-            // ls.delete(1);
-            // ls.print();
-            // ls.delete(8);
-            // ls.print();
-            // ls.delete(5);
-            // ls.print();
-            // ls.delete(3);
-            // ls.print();
-            // ls.reverse();
-            // ls.print();
-        }
     }
 }
