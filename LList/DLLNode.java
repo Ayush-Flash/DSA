@@ -1,6 +1,6 @@
 package LList;
 
-class DLLNode {
+public class DLLNode {
     private int data;
     private DLLNode next;
     private DLLNode prev;
