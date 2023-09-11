@@ -6,6 +6,9 @@ public class SLL {
     public SLLNode getHead() {
         return head;
     }
+    public void setHead(SLLNode head) {
+        this.head = head;
+    }
     public int getSize() {
         return size;
     }
