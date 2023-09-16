@@ -31,11 +31,10 @@ class Main {
         if(evenEnd != null) {
             evenEnd.setNext(oddHead);
             list.setHead(evenHead);
-            return evenHead;
         } else {
             list.setHead(oddHead);
-            return oddHead;
         }
+        return list.getHead();
     }
     public static void main(String[] args) {
         try(Scanner sc = new Scanner(System.in)) {
