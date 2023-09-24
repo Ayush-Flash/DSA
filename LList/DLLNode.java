@@ -5,8 +5,8 @@ public class DLLNode {
     private DLLNode next;
     private DLLNode prev;
     
-    DLLNode() {};
-    DLLNode(int data) {
+    public DLLNode() {};
+    public DLLNode(int data) {
         this.data = data;
         this.next = null;
         this.prev = null;

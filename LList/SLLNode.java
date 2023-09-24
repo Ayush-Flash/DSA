@@ -3,8 +3,8 @@ package LList;
 public class SLLNode {
     private int data;
     private SLLNode next;
-    SLLNode() {}
-    SLLNode(int data) {
+    public SLLNode() {}
+    public SLLNode(int data) {
         this.data = data;
         this.next = null;
     }
