@@ -10,7 +10,7 @@ class Main {
         previousGreaterElements[0] = -1;
         stack.push(0);
         for(int i = 1 ; i < n ; i++) {
-            while(!stack.isEmpty() && arr[stack.peek()] <= arr[i]) {
+            while(!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
                 stack.pop();
             }
             int element = stack.isEmpty() ? -1 : arr[stack.peek()];
